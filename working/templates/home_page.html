@@ -1,0 +1,33 @@
+{% extends 'base.html'%}
+
+
+{% block content %}
+
+<div>
+	<h1>Welcome to Marketplace</h1>
+
+</div>
+
+{% for product in products.all %}
+<div class="row">
+	<div class="col-2" onclick="window.location='{% url 'detail_page' product.id %}'" style="cursor: pointer;">
+		<img src='{{ product.image.url }}' style="width:60px;height:60px;" class='img-fluid' />
+	</div>
+	<div class="col-6" onclick="window.location='{% url 'detail_page' product.id %}'" style="cursor: pointer;">
+		<h2>{{ product.name}}</h2>
+		<p>{{ product.summary}}</p>
+		
+	</div>
+	<div class="col-4">
+		<a href="javascript:{document.getElementById('upvote{{ product.id }}').submit()}"> <button class="btn btn-primary btn-lg btn-block"><span class="fas fa-thumbs-up"></span> Upvote {{ product.votes_total}}</button></a>
+	</div>
+</div>
+<form id="upvote{{ product.id }}" method="POST" action="{% url 'prod_upvote' product.id %}">
+	{% csrf_token %}
+	<input type="hidden">
+
+</form>
+
+{% endfor %}
+
+{% endblock %}

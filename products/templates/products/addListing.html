@@ -1,0 +1,46 @@
+{% extends 'base.html'%}
+
+{% block content %}
+
+<section class="login py-5 border-top-1">
+	<div class="container">
+		{% if error %}
+		{{ error }}
+		{% endif %}
+		<div class="row justify-content-center">
+			<div class="col-lg-5 col-md-8 align-item-center">
+				<div class="border">
+					<h3 class="bg-gray p-4">Add a Listing</h3>
+					<form method="POST" action="{% url 'addListing_page' %}" enctype="multipart/form-data">
+						{% csrf_token %}
+						<fieldset class="p-4">
+							Name:
+							<input type = "text" class="border p-3 w-100 my-2" name="product_name">
+							Description:
+							<input type = "text" class="border p-3 w-100 my-2" name="product_description">
+							Category:
+							<select type = "text" class="border p-3 w-100 my-2" name="product_category">
+  								<option value="Vehicles">Vehicles</option>
+  								<option value="Electronic">Electronic</option>
+  								<option value="Travel">Travel</option>
+  								<option value="Restaurant">Restaurant</option>
+							</select>
+							Price:
+							<input type = "text" class="border p-3 w-100 my-2" name="product_price">
+							Image:
+							<input type = "file" class="border p-3 w-100 my-2" name="product_image">
+							Stock:
+							<input type = "text" class="border p-3 w-100 my-2" name="product_stock">
+
+																				
+							<button type="submit" class="d-block py-3 px-5 bg-primary text-white border-0 rounded font-weight-bold mt-3">Add Product</button>
+							
+						</fieldset>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+{% endblock %}

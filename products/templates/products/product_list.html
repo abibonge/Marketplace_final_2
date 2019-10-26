@@ -1,0 +1,15 @@
+{% extends 'base.html'%}
+
+
+{% block content %}
+
+This is the product list<br>
+
+{% for obj in object_list %}
+
+<a href="{{ obj.get_abosolute_url }}">{{obj.name}} </a> <br>
+
+{% endfor %}
+
+
+{% endblock %}
